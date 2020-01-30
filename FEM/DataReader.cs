@@ -20,12 +20,19 @@ namespace FEM
             {
                 if (propsInType.Any(e=> line.Contains(e)))
                 {
-                    
+                    var propertyToSet = GetPropertyNameFromLine(line);
+                    var valueToSet = GetPropertyValueFromLine(line);
+                    SetTypeProperty(inputType, propertyToSet, valueToSet);
                 }
             }
         }
 
-        //public string 
+        public string GetPropertyNameFromLine(string line)
+        {
+            var nameAndValue = line.Split(':');
+            var result = nameAndValue[0].Trim();
+            return result;
+        }
 
         public int GetPropertyValueFromLine(string line)
         {
@@ -35,11 +42,12 @@ namespace FEM
             return result;
         }
 
-        public static List<string> GetTypeProperties(object atype)
+        public static List<string> GetTypeProperties(object inputType)
         {
             List<string> result = new List<string>();
-            if (atype == null) return result;
-            Type t = atype.GetType();
+            if (inputType == null) return result;
+
+            Type t = inputType.GetType();
             PropertyInfo[] props = t.GetProperties();
 
             foreach (PropertyInfo prp in props)
@@ -49,9 +57,11 @@ namespace FEM
             return result;
         }
 
-        public void SetTypeProperty(string property, int value)
+        public void SetTypeProperty(object inputType, string propertyName, int value)
         {
-
+            Type t = inputType.GetType();
+            PropertyInfo[] props = t.GetProperties();
+            props.Where(e => e.Name == propertyName).FirstOrDefault().SetValue(inputType, value);
         }
 
     }
