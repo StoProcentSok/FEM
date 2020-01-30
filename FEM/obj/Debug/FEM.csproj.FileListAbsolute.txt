@@ -1,0 +1,6 @@
+D:\Repositories\FEM\FEM\bin\Debug\FEM.exe.config
+D:\Repositories\FEM\FEM\bin\Debug\FEM.exe
+D:\Repositories\FEM\FEM\bin\Debug\FEM.pdb
+D:\Repositories\FEM\FEM\obj\Debug\FEM.csprojAssemblyReference.cache
+D:\Repositories\FEM\FEM\obj\Debug\FEM.exe
+D:\Repositories\FEM\FEM\obj\Debug\FEM.pdb
