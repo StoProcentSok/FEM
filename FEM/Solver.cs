@@ -35,7 +35,7 @@ namespace FEM
             Console.WriteLine(@"Strumien (q) = " + heatFlux);
             Console.WriteLine(@"Temperatura otoczenia = " + ambientTemperature);
             Console.WriteLine(@"Ilosc elementow = " + _noOfElements);
-            Console.WriteLine(@"Ilosc wezlow = " + _noOfElements + 1);
+            Console.WriteLine(@"Ilosc wezlow = " + (_noOfElements + 1));
             Console.WriteLine(@"Dlugosc calego elementu (l) = " + totalLength);
             Console.WriteLine(@"Dlugosc pojedynczego elementu = " + totalLength/_noOfElements);
 
@@ -46,6 +46,12 @@ namespace FEM
             grid.createLocalVector();
             grid.createGlobalMatrix();
             grid.createGlobalVector();
+
+            GaussEliminator gauss = new GaussEliminator();
+            gauss.printEquationsMatrix(grid.H);
+
+            //var result = gauss.calculate(grid.H, grid.P, grid.nodes.Length);
+
 
             return new double[1];
         }

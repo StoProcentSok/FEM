@@ -1,4 +1,4 @@
-noOfElements : 4
+noOfElements : 400
 totalLengthOfElement : 5
 heatFlux : -150
 crossSection : 2

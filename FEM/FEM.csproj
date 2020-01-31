@@ -46,6 +46,7 @@
     <Compile Include="DataReader.cs" />
     <Compile Include="FEMGrid.cs" />
     <Compile Include="FiniteElement.cs" />
+    <Compile Include="GaussEliminator.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Solver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

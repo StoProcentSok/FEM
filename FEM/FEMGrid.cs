@@ -62,7 +62,8 @@ namespace FEM
         {
             for (int i = 0; i < data.noOfElements; i++)
             {
-                elements[i].createFiniteElementVector(data.heatFlux, data.crossSection, data.convectionCoefficient, data.ambientTemperature);
+                elements[i].createFiniteElementVector(data.heatFlux, data.crossSection, 
+                                                      data.convectionCoefficient, data.ambientTemperature);
             }
         }
 
