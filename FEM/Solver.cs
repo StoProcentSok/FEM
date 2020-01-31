@@ -20,36 +20,42 @@ namespace FEM
             data.noOfNodes = data.noOfElements + 1;
             data.singleSubelementLength = data.totalLengthOfElement / data.noOfElements;
 
+            var result = CalculateFEMValues(data, data.noOfElements, data.totalLengthOfElement, data.heatFlux,
+                data.crossSection, data.thermalConductivity, data.convectionCoefficient, data.ambientTemperature);
 
             Console.ReadLine();
         }
-
-
-    }
-
-    public class Node
-    {
-        int id;
-        double x;
-        BoundryCondition boundryType;
-
-        public Node(int _id, double _x, BoundryCondition _boundryCondition)
+        public static double[] CalculateFEMValues(IData _data, double _noOfElements, double totalLength, double heatFlux, 
+            double crossSection, double thermalConductivity, double convectionCoefficient, double ambientTemperature)
         {
-            this.id = _id;
-            this.x = _x;
-            this.boundryType = _boundryCondition;
+            Console.WriteLine("------------------ Dane pobrane z pliku ------------------");
+            Console.WriteLine(@"K = " + thermalConductivity);
+            Console.WriteLine(@"Alfa = " + convectionCoefficient);
+            Console.WriteLine(@"Przekroj (s) = " + crossSection);
+            Console.WriteLine(@"Strumien (q) = " + heatFlux);
+            Console.WriteLine(@"Temperatura otoczenia = " + ambientTemperature);
+            Console.WriteLine(@"Ilosc elementow = " + _noOfElements);
+            Console.WriteLine(@"Ilosc wezlow = " + _noOfElements + 1);
+            Console.WriteLine(@"Dlugosc calego elementu (l) = " + totalLength);
+            Console.WriteLine(@"Dlugosc pojedynczego elementu = " + totalLength/_noOfElements);
+
+            Console.WriteLine("--------------------- Rozwiazanie MES ---------------------");
+            
+            FEMGrid grid = new FEMGrid(_data);
+            grid.createLocalMatrix();
+            grid.createLocalVector();
+            grid.createGlobalMatrix();
+            grid.createGlobalVector();
+
+            return new double[1];
         }
-    }
 
-    public class FiniteElement
-    {
 
     }
 
-    public enum BoundryCondition
-    {
-        LeftBoundryCondition = 0,
-        NoBoundryCondition = 1,
-        RightBoundryCondition = 2
-    }
+    
+
+   
+
+    
 }

@@ -61,15 +61,16 @@ namespace FEM
         {
             Type t = inputType.GetType();
             PropertyInfo[] props = t.GetProperties();
-            props.Where(e => e.Name == propertyName).FirstOrDefault().SetValue(inputType, value);
+            int intValue = (int)value;
+            props.Where(e => e.Name == propertyName).FirstOrDefault().SetValue(inputType, intValue);
         }
 
     }
 
     public class HeatTransferCalculationsData : IData
     {
-        public double noOfElements { get; set; }
-        public double noOfNodes { get; set; }
+        public int noOfElements { get; set; }
+        public int noOfNodes { get; set; }
         public double totalLengthOfElement { get; set; }
         public double crossSection { get; set; }
         public double singleSubelementLength { get; set; }
@@ -97,8 +98,8 @@ namespace FEM
 
     public interface IData
     {
-        double noOfElements { get; set; }
-        double noOfNodes { get; set; }
+        int noOfElements { get; set; }
+        int noOfNodes { get; set; }
         double totalLengthOfElement { get; set; }
         double crossSection { get; set; }
         double singleSubelementLength { get; set; }
