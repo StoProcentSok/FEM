@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FEM.FEMCalculationsTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace FEM
 
         public FEMGrid()
         {
-
+            //TODO: think about parallelisation, using operation bus to store and sort calculated elements before resolving to mesh.
         }
 
         public FEMGrid(/*HeatTransferCalculationsData*/IData _data)
@@ -42,7 +43,7 @@ namespace FEM
                 nodes[i] = new Node(i, i, conditionType);
             }
 
-            elements = new FiniteElement[data.noOfElements];
+            this.elements = new FiniteElement[data.noOfElements];
             for (int i = 0; i < data.noOfElements; i++)
             {
                 elements[i] = new FiniteElement(nodes[i], nodes[i + 1]);

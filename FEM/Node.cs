@@ -10,7 +10,7 @@ namespace FEM
     {
         public int id { get; set; }
         public double x { get; set; }
-        public BoundryCondition boundryType;
+        public BoundryCondition boundryType { get; set; }
 
         public Node(int _id, double _x, BoundryCondition _boundryCondition)
         {

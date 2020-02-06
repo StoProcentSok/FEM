@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FEM.FEMCalculationsTypes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,8 +14,7 @@ namespace FEM
         public void ReadData(ref IData inputType, string pathToDataConfig)
         {
             //TODO: implement dynamic types, i.e. IData should not define any specific properties
-            
-           
+            //-handle varying cross sections, enclose proper parts in 'sections of data'
             var propsInType = GetTypeProperties(inputType);
             foreach (var line in File.ReadAllLines(pathToDataConfig))
             {
@@ -67,45 +67,5 @@ namespace FEM
 
     }
 
-    public class HeatTransferCalculationsData : IData
-    {
-        public int noOfElements { get; set; }
-        public int noOfNodes { get; set; }
-        public double totalLengthOfElement { get; set; }
-        public double crossSection { get; set; }
-        public double singleSubelementLength { get; set; }
-        public double heatFlux { get; set; } //gestosc strumienia ciepla q
-        public double thermalConductivity { get; set; } //k / lambda
-        public double convectionCoefficient { get; set; } // Alpha
-        public double ambientTemperature { get; set; } //tx
-
-
-
-
-        public List<string> getDataProperties()
-        {
-            var dataProps = this.GetType().GetProperties();
-
-            List<string> result = new List<string>();
-            foreach (var prop in dataProps)
-            {
-                result.Add(prop.Name);
-            }
-
-            return result;
-        }
-    }
-
-    public interface IData
-    {
-        int noOfElements { get; set; }
-        int noOfNodes { get; set; }
-        double totalLengthOfElement { get; set; }
-        double crossSection { get; set; }
-        double singleSubelementLength { get; set; }
-        double heatFlux { get; set; } //gestosc strumienia ciepla q
-        double thermalConductivity { get; set; } //k / lambda
-        double convectionCoefficient { get; set; } // Alpha
-        double ambientTemperature { get; set; } //tx
-    }
+    
 }

@@ -44,6 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataReader.cs" />
+    <Compile Include="FEMCalculationsTypes\HeatTransferCalculationsData.cs" />
+    <Compile Include="FEMCalculationsTypes\IData.cs" />
     <Compile Include="FEMGrid.cs" />
     <Compile Include="FiniteElement.cs" />
     <Compile Include="GaussEliminator.cs" />
